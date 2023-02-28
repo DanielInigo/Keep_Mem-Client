@@ -9,25 +9,25 @@ function App() {
   const [list, setList] = useState([]);
 
   useEffect(()=>{
-    Axios.get("http://localhost:3001/read").then((response)=>{
+    Axios.get(`${process.env.REACT_APP_API_URL}/read`).then((response)=>{
       setList(response.data); 
       //console.log(list)
     });
   },[])
 
   const addToList = () => {
-    Axios.post("http://localhost:3001/insert", { Task: task, Time: days });
+    Axios.post(`${process.env.REACT_APP_API_URL}/insert`, { Task: task, Time: days });
   };
 
   const updateTask =(id)=>{
-    Axios.put("http://localhost:3001/update",{
+    Axios.put(`${process.env.REACT_APP_API_URL}/update`,{
     id:id,
     newTask:newTask
   });
   };
 
   const deleteTask =(id)=>{
-    Axios.delete(`http://localhost:3001/delete/${id}`,{
+    Axios.delete(`${process.env.REACT_APP_API_URL}/delete/${id}`,{
     id:id,
   });
   };
